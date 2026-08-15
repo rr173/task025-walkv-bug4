@@ -237,7 +237,7 @@ func (s *Store) Compact() error {
 	if err := os.Rename(tmpPath, s.path); err != nil {
 		return fmt.Errorf("rename compact: %w", err)
 	}
-	f, err := os.OpenFile(s.path, os.O_RDWR, 0o644)
+	f, err := os.OpenFile(s.path, os.O_RDWR|os.O_APPEND, 0o644)
 	if err != nil {
 		return fmt.Errorf("reopen wal after compact: %w", err)
 	}
